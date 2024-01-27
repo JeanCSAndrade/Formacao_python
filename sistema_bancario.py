@@ -1,7 +1,23 @@
 import datetime as dt
 from time import sleep
 from os import system
-nr_conta = 0
+# import json
+nr_conta = 1
+# DIR = 'Bank.json'
+# def read_json(dir, object):
+#     dados = []
+#     try:
+#         with open(dir, 'r', encoding='utg-8') as items:
+#             dados = json.load(items) 
+#     except:
+#         with open(dir, 'a', encoding='utf-8') as items:
+#             dados = json.dump(object, items, indent=2, ensure_ascii=False)
+#     return dados
+
+# def save_json(dir, object):
+#     with open(dir, 'a', encoding='utf-8') as items:
+#             dados = json.dump(object, items, indent=2, ensure_ascii=False)
+#     return dados
 
 def menu():
     opcao = input(f'''********Escolha uma opção********
@@ -103,7 +119,6 @@ def ver_extrato(extrato):
 
 def criar_conta(cpf, contas, agencia):
     global nr_conta
-    nr_conta += 1
     valida = []
     if len(cpf) < 11:
         print('Obrigatório digitar os 11 digitos do CPF')
@@ -129,6 +144,7 @@ def criar_conta(cpf, contas, agencia):
                   'CPF': '{}.{}.{}-{}'.format(cpf[:3],cpf[3:6],cpf[6:9],cpf[9:]),}]
         sleep(2)
         system('cls')
+        nr_conta += 1
         return conta
     cpf = str(cpf)
     print('CPF não localizado!')
@@ -138,6 +154,7 @@ def criar_conta(cpf, contas, agencia):
               'CPF': '{}.{}.{}-{}'.format(cpf[:3],cpf[3:6],cpf[6:9],cpf[9:]),}]
     sleep(2)
     system('cls')
+    nr_conta += 1
     return conta
 
 def criar_usuario(cpf, usuarios):
@@ -262,5 +279,4 @@ def main():
             listar_contas(_contas)
         elif opcao == 7:
             listar_usuarios(_usuarios)
-
 main()
