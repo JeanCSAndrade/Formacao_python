@@ -1,4 +1,3 @@
-# main.py
 import textwrap
 from os import system
 from time import sleep
@@ -25,7 +24,7 @@ def filtrar_cliente(cpf, clientes):
 
 def recuperar_conta_cliente(cliente):
     if not cliente.contas:
-        print("\n#### Cliente não encontrado! ####")
+        print("\n Cliente não encontrado! ")
         return
 
     return cliente.contas[0]
@@ -35,7 +34,7 @@ def depositar(clientes):
     cliente = filtrar_cliente(cpf, clientes)
 
     if not cliente:
-        print("\n#### Cliente não encontrado! ####")
+        print("\n Cliente não encontrado! ")
         return
 
     valor = float(input("Informe o valor do depósito: "))
@@ -52,7 +51,7 @@ def sacar(clientes):
     cliente = filtrar_cliente(cpf, clientes)
 
     if not cliente:
-        print("\n#### Cliente não encontrado! ####")
+        print("\n Cliente não encontrado! ")
         return
 
     valor = float(input("Informe o valor do saque: "))
@@ -70,7 +69,7 @@ def exibir_extrato(clientes):
 
     if not cliente:
         system('cls')
-        print("\n#### Cliente não encontrado! ####")
+        print("\n Cliente não encontrado! ")
         sleep(1)
         return
 
@@ -100,7 +99,7 @@ def criar_cliente(clientes):
     cliente = filtrar_cliente(cpf, clientes)
 
     if cliente:
-        print("\n#### Cliente já registrado na base de dados! ####")
+        print("\nCliente já registrado na base de dados!")
         return
 
     nome = input("Informe o nome completo: ")
@@ -116,21 +115,21 @@ def criar_cliente(clientes):
 
     clientes.append(cliente)
 
-    print("\n=== Cliente criado com sucesso! ===")
+    print("\nCliente criado com sucesso!")
 
 def criar_conta(numero_conta, clientes, contas):
     cpf = input("Informe o CPF do cliente: ")
     cliente = filtrar_cliente(cpf, clientes)
 
     if not cliente:
-        print("\n######### CPF não encontrado na base de clientes #########")
+        print("\n CPF não encontrado na base de clientes")
         return
 
     conta = ContaCorrente.nova_conta(cliente=cliente, numero=numero_conta)
     contas.append(conta)
     cliente.contas.append(conta)
 
-    print("\n=== Conta criada com sucesso! ===")
+    print("\nConta criada com sucesso!")
 
 def listar_contas(contas):
     for conta in contas:
@@ -171,6 +170,6 @@ def main():
             break
 
         else:
-            print("\n@@@ Operação inválida, por favor selecione novamente a operação desejada. @@@")
+            print("\nOperação inválida, digite a opção desejada novamente.")
 
 main()
