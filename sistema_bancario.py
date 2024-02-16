@@ -1,23 +1,6 @@
 import datetime as dt
 from time import sleep
 from os import system
-# import json
-nr_conta = 1
-# DIR = 'Bank.json'
-# def read_json(dir, object):
-#     dados = []
-#     try:
-#         with open(dir, 'r', encoding='utg-8') as items:
-#             dados = json.load(items) 
-#     except:
-#         with open(dir, 'a', encoding='utf-8') as items:
-#             dados = json.dump(object, items, indent=2, ensure_ascii=False)
-#     return dados
-
-# def save_json(dir, object):
-#     with open(dir, 'a', encoding='utf-8') as items:
-#             dados = json.dump(object, items, indent=2, ensure_ascii=False)
-#     return dados
 
 def menu():
     opcao = input(f'''********Escolha uma opção********
@@ -117,8 +100,7 @@ def ver_extrato(extrato):
     sleep(5)
     system('cls')
 
-def criar_conta(cpf, contas, agencia):
-    global nr_conta
+def criar_conta(cpf, contas, agencia, nr_conta):
     valida = []
     if len(cpf) < 11:
         print('Obrigatório digitar os 11 digitos do CPF')
@@ -145,7 +127,7 @@ def criar_conta(cpf, contas, agencia):
         sleep(2)
         system('cls')
         nr_conta += 1
-        return conta
+        return conta, nr_conta
     cpf = str(cpf)
     print('CPF não localizado!')
     conta = [{'Agencia': agencia,
@@ -155,7 +137,7 @@ def criar_conta(cpf, contas, agencia):
     sleep(2)
     system('cls')
     nr_conta += 1
-    return conta
+    return conta, nr_conta
 
 def criar_usuario(cpf, usuarios):
     valida = []
@@ -240,6 +222,7 @@ def main():
     __AGENCIA = '0001'
     __LIMITE_SAQUE = 3
     __LIMITE = 500
+    __nr_conta = 1
     saldo = 0
     _extrato = []
     extrato = ''
@@ -269,7 +252,8 @@ def main():
         elif opcao == 3:
             ver_extrato(_extrato)
         elif opcao == 4:
-            _contas.extend(criar_conta(input('Digite o CPF: '), _contas, __AGENCIA))
+            (_, __nr_conta) =(criar_conta(input('Digite o CPF: '), _contas, __AGENCIA, __nr_conta))
+            _contas.extend(_)
         elif opcao == 5:
             try:
                 _usuarios.extend(criar_usuario(input('Digite o CPF: '), _usuarios))
