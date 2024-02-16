@@ -76,7 +76,7 @@ class ContaCorrente(Conta):
         excedeu_saques = numero_saques >= self._limite_saques
 
         if excedeu_limite:
-            print(f"\nQuantidade muito alta, limite é {excedeu_limite:.2f}")
+            print(f"\nQuantidade muito alta, limite é {self._limite:.2f}")
 
         elif excedeu_saques:
             print("\nSeu limite diario de saque foi alcançado")
